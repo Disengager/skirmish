@@ -40,10 +40,18 @@ var Video = React.createClass({
   }
 });
 
-var Canvas = React.createClass({
+var CanvasBack = React.createClass({
   render: function() {
     return (
       <canvas id="view"></canvas>
+    )
+  }
+});
+
+var CanvasFront = React.createClass({
+  render: function() {
+    return (
+      <canvas id="mask"></canvas>
     )
   }
 });
@@ -58,26 +66,23 @@ var Wrapper = React.createClass({
   },
   participantsOver: function() {
     Application.hover(1);
-    this.setState({participantsHover: "bg-participants.png"});
   },
   achievementsOver: function() {
     Application.hover(2);
-    this.setState({participantsHover: "bg-achievements.png"});
   },
   othersOver: function() {
     Application.hover(3);
-    this.setState({participantsHover: "bg-others.png"});
   },
   aboutOver: function() {
     Application.hover(4);
-    this.setState({participantsHover: "bg-about.png"});
   },
   render: function() {
     var image = this.state.participantsHover;
     return (
       <div className="gl-main main">
-        <div className="lc-main main" style={{backgroundImage: 'url(img/' + image + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat'}} >
-          <Canvas />
+        <div className="lc-main main">
+          <CanvasBack />
+          <CanvasFront />
           <Participants onParticipantsOver={this.participantsOver} />
           <Achievements onAchievementsOver={this.achievementsOver} />
           <Others onOthersOver={this.othersOver} />
