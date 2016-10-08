@@ -1,0 +1,26 @@
+[
+  {
+    "nick": "Disengager", "avatar": "dis.jpg",
+    "achivs":
+    {
+      "1": "th.jpg", "2": "dt.jpg"
+    },
+    "clips":
+    {
+      "1": { "name": "The with nobody live in",  "link": "amvnews.ru?id=1" },
+      "2": { "name": "Demon's Fate", "link": "amvnews.ru?id=2" }
+    }
+  },
+  {
+    "nick": "Disengager", "avatar": "dis.jpg",
+    "achivs":
+    {
+      "1": "th.jpg", "2": "dt.jpg"
+    },
+    "clips":
+    {
+      "1": { "name": "The with nobody live in",  "link": "amvnews.ru?id=1" },
+      "2": { "name": "Demon's Fate", "link": "amvnews.ru?id=2" }
+    }
+  }
+]

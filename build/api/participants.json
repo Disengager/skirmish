@@ -1,0 +1,28 @@
+[
+  {
+    "nick": "Disengager",
+    "achives":
+    [
+      {"name": "th.jpg"},
+      {"name": "dt.jpg"}
+    ],
+    "clips":
+    [
+      { "name": "The with nobody live in",  "link": "amvnews.ru?id=1" },
+      { "name": "Demon's Fate", "link": "amvnews.ru?id=2" }
+    ]
+  },
+  {
+    "nick": "NewBroverMind",
+    "achives":
+    [
+      {"name": "th.jpg"},
+      {"name": "dt.jpg"}
+    ],
+    "clips":
+    [
+      { "name": "Waifu",  "link": "amvnews.ru?id=1" },
+      { "name": "A-GO!", "link": "amvnews.ru?id=2" }
+    ]
+  }
+]

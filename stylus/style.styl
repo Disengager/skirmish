@@ -1,0 +1,79 @@
+
+imgs-path = "../img/"
+
+* {
+  margin 0
+  padding 0
+}
+
+body, html, .main {
+  height 100%
+  width 100%
+}
+
+body {
+  overflow: hidden;
+  background-color: black
+}
+
+.main {
+  display flex
+  flex-wrap wrap
+}
+
+.participants {
+  width 45%
+}
+
+.achievements {
+  width 20%
+}
+
+.others {
+  width 35%
+}
+
+.block {
+  height 85%
+}
+
+.block:hover {
+  cursor pointer
+}
+
+.about {
+  width 100%
+  heigh 35%
+  position absolute
+  transform rotate(30deg)
+  width 50%
+  height 50%
+  margin-top 32%
+  margin-left 35%
+}
+
+.gl-main {
+  background url(imgs-path bg.jpg)
+  animation rise 0.5s infinite
+  animation-iteration-count 1
+}
+
+@keyframes rise {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.gl-main, .participants-main, .achievements-main, .others-main, .about-main {
+  background-size 100%
+}
+.content {
+  background gray
+}
+
+.lc-main {
+  transition 0.3s
+}

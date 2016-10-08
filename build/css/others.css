@@ -1,0 +1,1 @@
+*{margin:0;padding:0}.main,body,html{height:100%;width:100%}body{overflow:hidden;background-color:#000}.main{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.gl-main{background:url(../img/others.jpg);animation:rise .5s infinite;animation-iteration-count:1;background-size:100%}@keyframes rise{from{opacity:0}to{opacity:1}}

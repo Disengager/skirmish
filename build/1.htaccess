@@ -1,0 +1,63 @@
+# BEGIN Redirect
+
+
+RewriteEngine on
+RewriteBase /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.php\ HTTP
+RewriteRule ^([^.]+)\.php$ http://constantium.net/$1 [R=301,L]
+RewriteCond %{REQUEST_URI} !(\.[^./]+)$
+RewriteCond %{REQUEST_fileNAME} !-d
+RewriteCond %{REQUEST_fileNAME} !-f
+RewriteRule (.*) /$1.php [L]
+
+
+#RewriteEngine on
+
+#RewriteCond %{HTTP_HOST} .
+
+#RewriteCond %{HTTP_HOST} ^portfoliott\.hostenko\.com$ [NC]
+
+#RewriteRule (.*) http://constantium.net/$1 [R=301,L]
+
+#RewriteCond %{HTTP_HOST} .
+
+#RewriteCond %{HTTP_HOST} ^www\.portfoliott\.hostenko\.com$ [NC]
+
+#RewriteRule (.*) http://constantium.net/$1 [R=301,L]
+
+# END Redirect
+
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+
+
+
+Options All -Indexes
+
+# Gzip compression for Apache 2
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain text/html text/json text/xml text/xsd text/xsl text/css DEFLATE text/javascript text/x-js text/richtext text/svg+xml
+AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript
+
+    AddType x-font/otf .otf
+    AddType x-font/ttf .ttf
+    AddType x-font/eot .eot
+    AddType x-font/woff .woff
+    AddType image/x-icon .ico
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType image/gif "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  #ExpiresByType image/png "access plus 7 days"
+  <Filesmatch "\.(woff)$">
+    ExpiresDefault "access plus 7 days"
+  </Filesmatch>
+</IfModule>

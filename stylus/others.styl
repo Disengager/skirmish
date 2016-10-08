@@ -1,0 +1,41 @@
+
+imgs-path = "../img/"
+
+* {
+  margin 0
+  padding 0
+}
+
+body, html, .main {
+  height 100%
+  width 100%
+}
+
+body {
+  overflow: hidden;
+  background-color: black;
+}
+
+.main {
+  display flex
+  flex-wrap wrap
+}
+
+.gl-main {
+  background url(imgs-path others.jpg)
+  animation rise 0.5s infinite
+  animation-iteration-count 1
+}
+
+.gl-main {
+  background-size 100%
+}
+
+@keyframes rise {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
