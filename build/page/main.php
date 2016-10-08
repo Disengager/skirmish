@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
     <script type="text/babel" src="js/app.js"></script>
+    <script src="js/app_classes.js"></script>
   </head>
   <body>
 

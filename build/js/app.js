@@ -32,22 +32,50 @@ var About = React.createClass({
   }
 });
 
+var Video = React.createClass({
+  displayName: "Video",
+
+  render: function render() {
+    return React.createElement(
+      "video",
+      { id: "data" },
+      React.createElement("source", { src: "video/main.mp4" })
+    );
+  }
+});
+
+var Canvas = React.createClass({
+  displayName: "Canvas",
+
+  render: function render() {
+    return React.createElement("canvas", { id: "view" });
+  }
+});
+
 var Wrapper = React.createClass({
   displayName: "Wrapper",
 
+  componentDidMount: function componentDidMount() {
+    load();
+    load = function load() {};
+  },
   getInitialState: function getInitialState() {
     return { participantsHover: "bg.jpg" };
   },
   participantsOver: function participantsOver() {
+    Application.hover(1);
     this.setState({ participantsHover: "bg-participants.png" });
   },
   achievementsOver: function achievementsOver() {
+    Application.hover(2);
     this.setState({ participantsHover: "bg-achievements.png" });
   },
   othersOver: function othersOver() {
+    Application.hover(3);
     this.setState({ participantsHover: "bg-others.png" });
   },
   aboutOver: function aboutOver() {
+    Application.hover(4);
     this.setState({ participantsHover: "bg-about.png" });
   },
   render: function render() {
@@ -58,10 +86,12 @@ var Wrapper = React.createClass({
       React.createElement(
         "div",
         { className: "lc-main main", style: { backgroundImage: 'url(img/' + image + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat' } },
+        React.createElement(Canvas, null),
         React.createElement(Participants, { onParticipantsOver: this.participantsOver }),
         React.createElement(Achievements, { onAchievementsOver: this.achievementsOver }),
         React.createElement(Others, { onOthersOver: this.othersOver }),
-        React.createElement(About, { onAboutOver: this.aboutOver })
+        React.createElement(About, { onAboutOver: this.aboutOver }),
+        React.createElement(Video, null)
       )
     );
   }

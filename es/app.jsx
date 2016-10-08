@@ -1,4 +1,3 @@
-
 var Participants = React.createClass({
   render: function() {
     return (
@@ -31,20 +30,46 @@ var About = React.createClass({
   }
 });
 
+var Video = React.createClass({
+  render: function() {
+    return (
+      <video id="data">
+        <source src="video/main.mp4" />
+      </video>
+    );
+  }
+});
+
+var Canvas = React.createClass({
+  render: function() {
+    return (
+      <canvas id="view"></canvas>
+    )
+  }
+});
+
 var Wrapper = React.createClass({
+  componentDidMount: function() {
+    load();
+    load = function() {};
+  },
   getInitialState: function() {
     return {participantsHover: "bg.jpg"};
   },
   participantsOver: function() {
+    Application.hover(1);
     this.setState({participantsHover: "bg-participants.png"});
   },
   achievementsOver: function() {
+    Application.hover(2);
     this.setState({participantsHover: "bg-achievements.png"});
   },
   othersOver: function() {
+    Application.hover(3);
     this.setState({participantsHover: "bg-others.png"});
   },
   aboutOver: function() {
+    Application.hover(4);
     this.setState({participantsHover: "bg-about.png"});
   },
   render: function() {
@@ -52,10 +77,12 @@ var Wrapper = React.createClass({
     return (
       <div className="gl-main main">
         <div className="lc-main main" style={{backgroundImage: 'url(img/' + image + ')', backgroundSize: '100%', backgroundRepeat: 'no-repeat'}} >
+          <Canvas />
           <Participants onParticipantsOver={this.participantsOver} />
           <Achievements onAchievementsOver={this.achievementsOver} />
           <Others onOthersOver={this.othersOver} />
           <About onAboutOver={this.aboutOver} />
+          <Video />
         </div>
       </div>
     );

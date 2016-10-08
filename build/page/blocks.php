@@ -4,7 +4,6 @@ function get() {
   echo $_GET['type'];
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +19,5 @@ function get() {
     <script type="text/babel" src="../js/<?php get(); ?>.js"></script>
   </head>
   <body>
-
   </body>
-
 </html>
