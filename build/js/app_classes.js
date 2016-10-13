@@ -12,12 +12,11 @@ var Application = {
       this.pLastHover = this.pNowHover;
       this.pNowHover = val;
 
-
-
     }
   },
   pCanvasW: 50,
   pCanvasH: undefined,
+  pCanvasL: undefined,
   pCanvas: undefined,
   pCanvasContext: undefined,
   pBackCanvas: undefined,
@@ -54,12 +53,67 @@ var Application = {
   },
 }
 
+function Resize() {}
+
+var resizeObj = new Resize();
+
 function load() {
   Application.loader(function() {
+
+    resizeObj.setC = function(clientW, clientH) {
+      resizeObj.clientH = clientH;
+      resizeObj.clientW = clientW;
+      console.log(clientH + " : " + clientW);
+      if(resizeObj.clientH <= 1080 && resizeObj.clientW <= 1920) {
+        resizeObj.c = resizeObj.clientH / 1080;
+        if(resizeObj.c * 1920 < resizeObj.clientW)
+          resizeObj.c = resizeObj.clientW / 1920;
+        return true;
+      }
+      else return false;
+
+    };
+
+    resizeObj.getWidth = function() {
+      return resizeObj.c * 1920;
+    };
+    resizeObj.getHeight = function() {
+      return resizeObj.c * 1080;
+    };
+    resizeObj.getLeft = function() {
+      var tempWidth = resizeObj.getWidth();
+      var tempLeft =  (tempWidth - resizeObj.clientW);
+      if(tempWidth - tempLeft <= resizeObj.clientW) {
+         tempWidth = tempLeft - (1920 / 100 * 7);
+         if(tempWidth >= 0)
+           tempLeft = tempWidth;
+        return tempLeft * (-1);
+      }
+    };
+    resizeObj.getPlace = function() {
+      var tempArr = [];
+      var tempW = Application.pCanvasW / 100 * 45;
+      tempArr[1] = {'width' : tempW, 'left' : Application.pCanvasL};
+      tempW = Application.pCanvasW / 100 * 20;
+      var tempL = Application.pCanvasL + Application.pCanvasW / 100 * 45;
+      tempArr[2] = {'width' : tempW, 'left' : tempL};
+      tempW = Application.pCanvasW / 100 * 35;
+      tempL = Application.pCanvasL + Application.pCanvasW / 100 * 45 + Application.pCanvasW / 100 * 20;
+      tempArr[3] = {'width' : tempW, 'left' : tempL};
+      tempW = Application.pCanvasW / 100 * 50;
+      tempL = Application.pCanvasL + Application.pCanvasW / 100 * 35;
+      var tempT = Application.pCanvasH / 100 * 32;
+      tempArr[4] = {'width':tempW, 'left' : tempL, 'top' : tempT};
+
+      return tempArr;
+    };
+
+
 
     Application.pVideo = document.getElementById('data');
     Application.pCanvas = document.getElementById('view');
     Application.pBackCanvas = document.getElementById('mask');
+    var offset = document.getElementById('map-main');
     Application.pCanvasContext = Application.pCanvas.getContext('2d');
     Application.pBackContext = Application.pBackCanvas.getContext('2d');
 
@@ -74,9 +128,19 @@ function load() {
     Application.pBlackZone[4].src = "img/bg-about-black.png";
 
     // Application.pBlackZone[]
+    if(resizeObj.setC(offset.clientWidth, offset.clientHeight)) {
+      Application.pBackCanvas.width = Application.pCanvas.width = Application.pCanvasW = resizeObj.getWidth();
+      Application.pBackCanvas.height = Application.pCanvas.height = Application.pCanvasH = resizeObj.getHeight();
+      Application.pBackCanvas.style.left = Application.pCanvasL = Application.pCanvas.style.left = resizeObj.getLeft();
+    }
+    else {
+      Application.pBackCanvas.width = Application.pCanvas.width = Application.pCanvasW = Application.pCanvas.clientWidth;
+      Application.pBackCanvas.height = Application.pCanvas.height = Application.pCanvasH = Application.pCanvas.clientHeight;
+    }
 
-    Application.pBackCanvas.width = Application.pCanvas.width = Application.pCanvasW = Application.pCanvas.clientWidth;
-    Application.pBackCanvas.height = Application.pCanvas.height = Application.pCanvasH = Application.pCanvas.clientHeight;
+    Application.pCanvasPlaces = resizeObj.getPlace();
+    alert(Application.pCanvasPlaces[1]);
+
 
     Application.pVideo.addEventListener('play', function(){
           Application.rendringCanvas(this,Application.pCanvasContext,Application.pCanvasW,Application.pCanvasH);

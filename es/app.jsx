@@ -80,7 +80,7 @@ var Wrapper = React.createClass({
     var image = this.state.participantsHover;
     return (
       <div className="gl-main main">
-        <div className="lc-main main">
+        <div className="lc-main main" id="map-main">
           <CanvasBack />
           <CanvasFront />
           <Participants onParticipantsOver={this.participantsOver} />

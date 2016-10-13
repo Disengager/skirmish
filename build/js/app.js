@@ -89,7 +89,7 @@ var Wrapper = React.createClass({
       { className: "gl-main main" },
       React.createElement(
         "div",
-        { className: "lc-main main" },
+        { className: "lc-main main", id: "map-main" },
         React.createElement(CanvasBack, null),
         React.createElement(CanvasFront, null),
         React.createElement(Participants, { onParticipantsOver: this.participantsOver }),
